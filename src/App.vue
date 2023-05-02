@@ -11,6 +11,7 @@ export default {
 
 <template>
   <div class="container">
+    <h1>ciao</h1>
     <Projects></Projects>
   </div>
 </template >

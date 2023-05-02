@@ -1,5 +1,6 @@
 <template>
     <div>
+        prova
         <p v-for="project in projects" :key="project.id">{{ project.title }}</p>
     </div>
 </template>
@@ -17,6 +18,8 @@ export default {
             axios.get('http://127.0.0.1:8000/api/projects')
                 .then(res => {
                     console.log(res)
+                    const { result } = res.data
+                    this.projects = result
                 })
         }
     },
@@ -24,6 +27,6 @@ export default {
         this.fetchProjects()
     },
 }
-</script>
+</script> 
 
 <style lang="scss" scoped></style>
