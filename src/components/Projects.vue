@@ -1,31 +1,43 @@
 <template>
     <div>
         prova
-        <p v-for="project in projects" :key="project.id">{{ project.title }}</p>
+        <ProjectCard v-for="project in projects" :key="project.id" :project="project"></ProjectCard>
+        <ul>
+            <li @click="fetchProjects(1)">1</li>
+            <li @click="fetchProjects(2)">2</li>
+        </ul>
     </div>
 </template>
 
 <script>
 import axios from 'axios'
+import ProjectCard from './ProjectCard.vue'
 export default {
+    components: {
+        ProjectCard
+    },
     data() {
         return {
             projects: []
         }
     },
     methods: {
-        fetchProjects() {
-            axios.get('http://127.0.0.1:8000/api/projects')
+        fetchProjects(page) {
+            axios.get('http://127.0.0.1:8000/api/projects', {
+                params: {
+                    page: page
+                }
+            })
                 .then(res => {
                     // console.log(res)
                     let result = res.data.results
-                    this.projects = result
-                    console.log(this.projects)
+                    this.projects = result.data
+                    // console.log(this.projects)
                 })
         }
     },
     mounted() {
-        this.fetchProjects()
+        this.fetchProjects(1)
     },
 }
 </script> 
