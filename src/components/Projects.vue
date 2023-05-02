@@ -17,9 +17,10 @@ export default {
         fetchProjects() {
             axios.get('http://127.0.0.1:8000/api/projects')
                 .then(res => {
-                    console.log(res)
-                    const { result } = res.data
+                    // console.log(res)
+                    let result = res.data.results
                     this.projects = result
+                    console.log(this.projects)
                 })
         }
     },
