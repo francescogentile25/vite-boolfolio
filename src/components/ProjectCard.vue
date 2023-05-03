@@ -2,9 +2,12 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">{{ project.title }}</h5>
-            <p class="card-text">
-                Some quick example text to build on the card title and make up the bulk of the card'scontent.
-            </p>
+            <p class="card-text">{{ project.description }}</p>
+            <p class="text-primary">{{ project.type ? project.type.name : 'nessun tipo' }}</p>
+            <ul class="p-0 m-0" v-if="project.technologies && project.technologies.length > 0">
+                <li class="badge rounded-pill text-bg-primary mx-1" v-for="technology in project.technologies"
+                    :key="technology.id">{{ technology.name }}</li>
+            </ul>
         </div>
     </div>
 </template>
