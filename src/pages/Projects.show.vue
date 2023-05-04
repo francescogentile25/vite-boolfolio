@@ -1,16 +1,25 @@
 <template>
-    <div>
-        DETTAGLI post
-        <h1>{{ $route.params.slug }}</h1>
+    <template v-if="project">
+        <div class="container">
+            DETTAGLI post
+            <h1>{{ $route.params.slug }}</h1>
+            <h3>{{ project.title }}</h3>
+            <p>{{ project.description }}</p>
 
-    </div>
+        </div>
+
+    </template>
 </template>
 
 <script>
 import axios from 'axios';
 export default {
     components: {},
-
+    data() {
+        return {
+            project: null
+        }
+    },
     props: ['slug'],
     methods: {
         fetchProjects() {
