@@ -4,6 +4,7 @@ import Home from './pages/Home.vue'
 import ChiSono from './pages/ChiSono.vue'
 import Contacts from './pages/Contacts.vue'
 import Portfolio from './pages/Portfolio.vue'
+import ProjectsShow from './pages/Projects.show.vue'
 
 const history = createWebHistory()
 console.log('history: ', history)
@@ -31,6 +32,11 @@ const router = createRouter({
             name: 'portfolio',
             component: Portfolio,
         },
+        {
+            path: '/project/:slug',
+            name: 'projects.show',
+            component: ProjectsShow,
+        }
     ],
 })
 
