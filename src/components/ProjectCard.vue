@@ -1,6 +1,7 @@
 <template>
     <div class="card">
-        <router-link :to="`/project/${project.slug}`">
+        <!-- <router-link :to="`/project/${project.slug}`"> -->
+        <router-link :to="{ name: 'projects.show', params: { slug: project.slug } }">
             <div class="card-body">
 
                 <h5 class="card-title">{{ project.title }}</h5>

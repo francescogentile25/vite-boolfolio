@@ -11,20 +11,38 @@
 
 
         </div>
+        <div class="container" v-if="relatedProject.length > 0">
+            <ul class="correlated">
+                <li v-for="related in relatedProject" :key="related.id">
+                    <ProjectCard :project="related"></ProjectCard>
+                </li>
+            </ul>
+        </div>
 
     </template>
 </template>
 
 <script>
 import axios from 'axios';
+import ProjectCard from '../components/ProjectCard.vue';
 export default {
-    components: {},
+    components: {
+        ProjectCard,
+    },
     data() {
         return {
             project: null
         }
     },
     props: ['slug'],
+    computed: {
+        relatedProject() {
+            if (this.project.type) {
+                return this.project.type.projects
+            }
+            return []
+        }
+    },
     methods: {
         fetchProjects(slug) {
             axios.get(`http://127.0.0.1:8000/api/projects/${slug}`)
@@ -41,10 +59,20 @@ export default {
     created() {
         this.fetchProjects(this.slug)
     },
+    beforeRouteUpdate(to, from) {
+        const newSlug = to.params.slug
+        this.fetchProjects(newSlug)
+    },
     mounted() {
         console.log(this.$route)
     }
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.correlated {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(5, 1fr);
+}
+</style>
