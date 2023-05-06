@@ -1,14 +1,17 @@
 <template>
-    <div>
+    <Default>
         <div class="container">
             <h1>Home</h1>
         </div>
-    </div>
+    </Default>
 </template>
 
 <script>
+import Default from '../layouts/Default.vue';
 export default {
-
+    components: {
+        Default
+    }
 }
 </script>
 

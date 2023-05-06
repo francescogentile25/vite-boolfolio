@@ -1,33 +1,38 @@
 <template>
-    <template v-if="project">
-        <div class="container">
-            <h3>{{ project.title }}</h3>
-            <p>{{ project.description }}</p>
-            <p v-if="project.type">{{ project.type.name }}</p>
-            <ul class="p-0 m-0">
-                <li class="badge rounded-pill text-bg-primary mx-1" v-for="technology in project.technologies"
-                    :key="technology.slug">{{ technology.name }}</li>
-            </ul>
+    <Default>
+        <template v-if="project">
+            <div class="container">
+                <h3>{{ project.title }}</h3>
+                <img v-if="project.cover_image" :src="project.cover_path" alt="">
+                <p>{{ project.description }}</p>
+                <p v-if="project.type">{{ project.type.name }}</p>
+                <ul class="p-0 m-0">
+                    <li class="badge rounded-pill text-bg-primary mx-1" v-for="technology in project.technologies"
+                        :key="technology.slug">{{ technology.name }}</li>
+                </ul>
 
 
-        </div>
-        <div class="container" v-if="relatedProject.length > 0">
-            <ul class="correlated">
-                <li v-for="related in relatedProject" :key="related.id">
-                    <ProjectCard :project="related"></ProjectCard>
-                </li>
-            </ul>
-        </div>
+            </div>
+            <div class="container" v-if="relatedProject.length > 0">
+                <ul class="correlated">
+                    <li v-for="related in relatedProject" :key="related.id">
+                        <ProjectCard :project="related"></ProjectCard>
+                    </li>
+                </ul>
+            </div>
 
-    </template>
+        </template>
+    </Default>
 </template>
 
 <script>
 import axios from 'axios';
 import ProjectCard from '../components/ProjectCard.vue';
+import Default from '../layouts/Default.vue';
 export default {
     components: {
         ProjectCard,
+        Default
     },
     data() {
         return {
@@ -35,6 +40,10 @@ export default {
         }
     },
     props: ['slug'],
+    components: {
+        Default,
+        ProjectCard
+    },
     computed: {
         relatedProject() {
             if (this.project.type) {
