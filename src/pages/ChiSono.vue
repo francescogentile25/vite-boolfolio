@@ -1,12 +1,8 @@
 <template>
     <Default>
         <div class="container">
-            <h1>Chi sono</h1>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, illum?</p>
-        </div>
-
-        <div class="container">
-            <p>
+            <h1 class="text-center my-3">Chi sono</h1>
+            <p class="text">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro commodi, deleniti in, explicabo cumque sunt
                 eveniet voluptates quos eius voluptatibus, ratione ad? Iste velit maiores asperiores soluta? Officia
                 praesentium
@@ -34,4 +30,12 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.container {
+    color: white;
+}
+
+.text {
+    column-count: 2
+}
+</style>

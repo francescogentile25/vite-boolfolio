@@ -1,11 +1,11 @@
 <template>
     <Default>
         <template v-if="project">
-            <div class="container">
+            <div class="container text-white ">
                 <h3>{{ project.title }}</h3>
                 <img v-if="project.cover_image" :src="project.cover_path" alt="">
                 <p>{{ project.description }}</p>
-                <p v-if="project.type">{{ project.type.name }}</p>
+                <p class="fs-2 text-primary  text-uppercase" v-if="project.type">{{ project.type.name }}</p>
                 <ul class="p-0 m-0">
                     <li class="badge rounded-pill text-bg-primary mx-1" v-for="technology in project.technologies"
                         :key="technology.slug">{{ technology.name }}</li>
@@ -14,7 +14,7 @@
 
             </div>
             <div class="container" v-if="relatedProject.length > 0">
-                <ul class="correlated">
+                <ul class="correlated my-5">
                     <li v-for="related in relatedProject" :key="related.id">
                         <ProjectCard :project="related"></ProjectCard>
                     </li>

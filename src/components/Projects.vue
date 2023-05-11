@@ -2,8 +2,8 @@
     <div class="projects">
         <ProjectCard v-for="project in projects" :key="project.id" :project="project"></ProjectCard>
     </div>
-    <ul class="d-flex gap-2 flex-wrap align-items-center justify-content-center">
-        <li :class="['text-success', link.active ? 'text-danger' : '']" v-for="link  in links"
+    <ul class="d-flex gap-2 flex-wrap align-items-center justify-content-center my-3" style="cursor: pointer;">
+        <li :class="['text-white ', link.active ? 'text-muted' : '']" v-for="link  in links"
             @click="fetchPostsByUrl(link.url)" :key="link.label" v-html="link.label">
         </li>
     </ul>

@@ -1,111 +1,138 @@
 <template>
     <Default>
-        <!--Section: Contact v.2-->
-        <section class="mb-4">
-
-            <!--Section heading-->
-            <h2 class="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
-            <!--Section description-->
-            <p class="text-center w-responsive mx-auto mb-5">Do you have any questions? Please do not hesitate to contact us
-                directly. Our team will come back to you within
-                a matter of hours to help you.</p>
-
-            <div class="row">
-
-                <!--Grid column-->
-                <div class="col-md-9 mb-md-0 mb-5">
-                    <form id="contact-form" name="contact-form" action="mail.php" method="POST">
-
-                        <!--Grid row-->
-                        <div class="row">
-
-                            <!--Grid column-->
-                            <div class="col-md-6">
-                                <div class="md-form mb-0">
-                                    <input type="text" id="name" name="name" class="form-control">
-                                    <label for="name" class="">Your name</label>
-                                </div>
-                            </div>
-                            <!--Grid column-->
-
-                            <!--Grid column-->
-                            <div class="col-md-6">
-                                <div class="md-form mb-0">
-                                    <input type="text" id="email" name="email" class="form-control">
-                                    <label for="email" class="">Your email</label>
-                                </div>
-                            </div>
-                            <!--Grid column-->
-
+        <div class="container">
+            <section class="mx-4 text-light">
+                <h2 class="h1-responsive font-weight-bold text-center my-4">Contattami</h2>
+                <p class="text-center w-responsive mx-auto mb-5">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Consequuntur amet adipisci iste.</p>
+                <div class="row">
+                    <div class="col-md-9 mb-md-0 mb-5">
+                        <div v-if="success">
+                            mess inviato con successo
                         </div>
-                        <!--Grid row-->
-
-                        <!--Grid row-->
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="md-form mb-0">
-                                    <input type="text" id="subject" name="subject" class="form-control">
-                                    <label for="subject" class="">Subject</label>
+                        <form @submit.prevent="sendForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="md-form mb-0">
+                                        <label for="" class="">Il tuo nome</label>
+                                        <input v-model="name" type="text" name="name" class="form-control"
+                                            :class="[errors && errors.name ? 'text-danger' : 'text-primary']">
+                                        <p>caratteri rimasti: {{ 255 - name.length }}</p>
+                                        <small v-if="errors && errors.name">
+                                            <span v-for="error in errors.name" :key="error">{{ error }}</span>
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="md-form mb-0">
+                                        <label for="" class="">La tuam email</label>
+                                        <input v-model="email" type="email" name="email" class="form-control"
+                                            :class="[errors && errors.email ? 'text-danger' : 'text-primary']">
+                                        <p>caratteri rimasti: {{ 255 - name.length }}</p>
+                                        <small v-if="errors && errors.email">
+                                            <span v-for="error in errors.email" :key="error">{{ error }}</span>
+                                        </small>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <!--Grid row-->
-
-                        <!--Grid row-->
-                        <div class="row">
-
-                            <!--Grid column-->
-                            <div class="col-md-12">
-
-                                <div class="md-form">
-                                    <textarea type="text" id="message" name="message" rows="2"
-                                        class="form-control md-textarea"></textarea>
-                                    <label for="message">Your message</label>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="md-form">
+                                        <label for="">Il tuo messaggio</label>
+                                        <textarea v-model="message" type="text" id="" name="message" rows="2"
+                                            class="form-control md-textarea"
+                                            :class="[errors && errors.message ? 'text-danger' : 'text-primary']"></textarea>
+                                        <small v-if="errors && errors.message">
+                                            <span v-for="error in errors.message" :key="error">{{ error }}</span>
+                                        </small>
+                                    </div>
                                 </div>
-
                             </div>
-                        </div>
-                        <!--Grid row-->
-
-                    </form>
-
-                    <div class="text-center text-md-left">
-                        <a class="btn btn-primary" onclick="document.getElementById('contact-form').submit();">Send</a>
+                            <div class="text-center text-md-left">
+                                <button v-if="loading === false" class="btn btn-primary" type="submit">Invia</button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="status"></div>
+                    <div class="col-md-3 text-center d-flex flex-column justify-content-center">
+                        <ul class="list-unstyled mb-0">
+                            <li><i class="fas fa-map-marker-alt fa-2x"></i>
+                                <p>Roma, Piazza Sabaudia 44 00171</p>
+                            </li>
+                            <li><i class="fas fa-phone mt-4 fa-2x"></i>
+                                <p>327-4594446</p>
+                            </li>
+                            <li><i class="fas fa-envelope mt-4 fa-2x"></i>
+                                <p>francescogentile250893@gmail.com</p>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <!--Grid column-->
-
-                <!--Grid column-->
-                <div class="col-md-3 text-center">
-                    <ul class="list-unstyled mb-0">
-                        <li><i class="fas fa-map-marker-alt fa-2x"></i>
-                            <p>San Francisco, CA 94126, USA</p>
-                        </li>
-
-                        <li><i class="fas fa-phone mt-4 fa-2x"></i>
-                            <p>+ 01 234 567 89</p>
-                        </li>
-
-                        <li><i class="fas fa-envelope mt-4 fa-2x"></i>
-                            <p>contact@mdbootstrap.com</p>
-                        </li>
-                    </ul>
-                </div>
-                <!--Grid column-->
-
-            </div>
-
-        </section>
-        <!--Section: Contact v.2-->
+            </section>
+        </div>
     </Default>
 </template>
-  
+
 <script>
+import axios from 'axios';
 import Default from '../layouts/Default.vue';
 export default {
     components: {
         Default
+    },
+    data() {
+        return {
+            name: '',
+            email: '',
+            message: '',
+            success: false,
+            errors: null,
+            loading: false
+        }
+    },
+    computed: {
+        nameIsValid() {
+            return this.name.trim() !== '' && this.name.trim().length <= 255
+        },
+        emailIsValid() {
+            return this.email.trim() !== '' && this.email.trim().length <= 255
+        },
+        messageIsValid() {
+            return this.message.trim() !== ''
+        }
+    },
+    methods: {
+        validate() {
+            return this.nameIsValid && this.emailIsValid && this.messageIsValid
+        },
+        sendForm() {
+            console.log('invio il form');
+            if (this.validate() === false) {
+                alert('compila il form')
+                return
+            }
+            this.loading = true
+            axios.post('http://127.0.0.1:8000/api/contacts', {
+                name: this.name,
+                email: this.email,
+                message: this.message,
+            }).then(res => {
+                console.log(res.data)
+                const { success, errors } = res.data
+                this.success = success
+                if (success) {
+                    this.name = ''
+                    this.email = ''
+                    this.message = ''
+                    this.errors = ''
+                } else {
+                    this.errors = errors
+                }
+            }).catch(err => {
+                console.log(err)
+            }).finally(() => {
+                this.loading = false
+            })
+        }
     }
 }
 </script>

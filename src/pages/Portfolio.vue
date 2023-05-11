@@ -1,7 +1,7 @@
 <template>
     <Default>
         <div class="container">
-            <h1>Progetti</h1>
+            <h1 class="text-center my-3">Progetti</h1>
         </div>
         <div class="container">
             <Projects />
@@ -22,4 +22,8 @@ export default {
 }
 </script>
   
-<style scoped></style>
+<style scoped>
+h1 {
+    color: white;
+}
+</style>
